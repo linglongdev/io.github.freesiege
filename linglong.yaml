@@ -1,0 +1,93 @@
+version: "1"
+
+package:
+  id: io.github.freesiege
+  name: freesiege
+  version: 1.3.0.0
+  kind: app
+  description: |
+    An intense tetris-like wargame
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+command:
+  - /opt/apps/io.github.freesiege/files/bin/freesiege
+
+sources:
+  - kind: git
+    url: https://gitlab.com/LibreGames/freesiege.git
+    version: master
+    commit: 7205754874bdadde73191e396ad064ec2382bcb7
+
+  - kind: git
+    url: https://github.com/libsdl-org/SDL.git
+    version: master
+    commit: 5ecbc00f367b4ac420fadf569e2d33325a7c2413
+
+  - kind: git
+    url: https://github.com/libsdl-org/SDL_net.git
+    version: master
+    commit: 22b49f366afbd5963ea9e07d7250d69ad21997f7
+
+  - kind: git
+    url: https://github.com/libsdl-org/SDL_mixer.git
+    version: master
+    commit: 72c6405651d8c0f18819b75ee7c2b60d48b79476
+
+  - kind: git
+    url: https://github.com/libsdl-org/SDL_ttf.git
+    version: master
+    commit: 7185085beb39b9e8b17d18685a2a58a14b7c53ef
+
+  - kind: git
+    url: https://github.com/libsdl-org/SDL_image.git
+    version: master
+    commit: 0000fb07f267eb53023b9e648f6d126025708ada
+build: |
+  cd /project/linglong/sources/SDL.git
+  cmake -Bbuild \
+        -DCMAKE_INSTALL_PREFIX=${PREFIX} 
+
+  cmake --build build
+  cmake --build build --target install
+
+  cd /project/linglong/sources/SDL_ttf.git
+  cmake -Bbuild \
+        -DCMAKE_INSTALL_PREFIX=${PREFIX} 
+
+  cmake --build build
+  cmake --build build --target install
+
+  cd /project/linglong/sources/SDL_image.git
+  cmake -Bbuild \
+        -DCMAKE_INSTALL_PREFIX=${PREFIX} 
+
+  cmake --build build
+  cmake --build build --target install
+
+  cd /project/linglong/sources/SDL_net.git
+  cmake -Bbuild \
+        -DCMAKE_INSTALL_PREFIX=${PREFIX} 
+
+  cmake --build build
+  cmake --build build --target install
+
+  cd /project/linglong/sources/SDL_mixer.git
+  cmake -Bbuild \
+        -DCMAKE_INSTALL_PREFIX=${PREFIX}  \
+        -DSDL2MIXER_OPUS=OFF \
+        -DSDL2MIXER_MOD=OFF \
+        -DSDL2MIXER_MIDI_FLUIDSYNTH=OFF \
+        -DSDL2MIXER_WAVPACK=OFF
+
+  cmake --build build
+  cmake --build build --target install
+
+  cd /project/linglong/sources/freesiege.git
+  git apply /project/patches/0001-fix-path.patch
+  cmake -Bbuild \
+        -DCMAKE_INSTALL_PREFIX=${PREFIX} 
+
+  cmake --build build
+  cmake --build build --target install

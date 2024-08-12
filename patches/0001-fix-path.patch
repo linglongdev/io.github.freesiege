@@ -1,0 +1,44 @@
+From a92486e2c3ac4080ad2d29b194c932e0367622e2 Mon Sep 17 00:00:00 2001
+From: Shenyufan <751890223@qq.com>
+Date: Sat, 10 Aug 2024 20:02:46 +0800
+Subject: [PATCH] fix-path
+
+---
+ CMakeLists.txt | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 69dd922..cfa3c27 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -62,17 +62,17 @@ ELSE(NET_ENABLED)
+ 	TARGET_LINK_LIBRARIES(freesiege ${SDL2MIXER_LIBRARIES} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} ${SDL2TTF_LIBRARIES})
+ ENDIF(NET_ENABLED)
+ 
+-install(DIRECTORY ${PROJECT_SOURCE_DIR}/sprites DESTINATION share/freesiege/)
+-install(DIRECTORY ${PROJECT_SOURCE_DIR}/sounds DESTINATION share/freesiege/)
+-install(DIRECTORY ${PROJECT_SOURCE_DIR}/anims DESTINATION share/freesiege/)
+-install(FILES ${PROJECT_SOURCE_DIR}/combi.cfg DESTINATION share/freesiege/)
+-install(FILES ${PROJECT_SOURCE_DIR}/sprites.cfg DESTINATION share/freesiege/)
+-install(FILES ${PROJECT_SOURCE_DIR}/anims.cfg DESTINATION share/freesiege/)
+-install(FILES ${PROJECT_SOURCE_DIR}/musics.cfg DESTINATION share/freesiege/)
+-install(FILES ${PROJECT_SOURCE_DIR}/Swift.ttf DESTINATION share/freesiege/)
++install(DIRECTORY ${PROJECT_SOURCE_DIR}/sprites DESTINATION bin)
++install(DIRECTORY ${PROJECT_SOURCE_DIR}/sounds DESTINATION bin)
++install(DIRECTORY ${PROJECT_SOURCE_DIR}/anims DESTINATION bin)
++install(FILES ${PROJECT_SOURCE_DIR}/combi.cfg DESTINATION bin)
++install(FILES ${PROJECT_SOURCE_DIR}/sprites.cfg DESTINATION bin)
++install(FILES ${PROJECT_SOURCE_DIR}/anims.cfg DESTINATION bin)
++install(FILES ${PROJECT_SOURCE_DIR}/musics.cfg DESTINATION bin)
++install(FILES ${PROJECT_SOURCE_DIR}/Swift.ttf DESTINATION bin)
+ install(FILES ${PROJECT_SOURCE_DIR}/Swift_license.txt DESTINATION share/freesiege/)
+-install(FILES ${PROJECT_SOURCE_DIR}/README DESTINATION share/licences/freesiege/)
++install(FILES ${PROJECT_SOURCE_DIR}/README.md DESTINATION share/licences/freesiege/)
+ install(FILES ${PROJECT_SOURCE_DIR}/COPYING DESTINATION share/licences/freesiege/)
+-install(FILES ${PROJECT_SOURCE_DIR}/freesiege.png DESTINATION share/icons/)
++install(FILES ${PROJECT_SOURCE_DIR}/freesiege.png DESTINATION share/icons/hicolor/64x64/)
+ install(FILES ${PROJECT_SOURCE_DIR}/freesiege.desktop DESTINATION share/applications)
+ install(TARGETS freesiege RUNTIME DESTINATION bin)
+-- 
+2.43.4
+
